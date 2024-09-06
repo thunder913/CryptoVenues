@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoVenues.Server", "CryptoVenues.Server\CryptoVenues.Server.csproj", "{5B30433F-8A81-49AF-BAE7-AE20E1429102}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "cryptovenues.client", "cryptovenues.client\cryptovenues.client.esproj", "{42CFA346-05F7-4812-8238-5D01A42E9936}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5B30433F-8A81-49AF-BAE7-AE20E1429102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B30433F-8A81-49AF-BAE7-AE20E1429102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B30433F-8A81-49AF-BAE7-AE20E1429102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B30433F-8A81-49AF-BAE7-AE20E1429102}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42CFA346-05F7-4812-8238-5D01A42E9936}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42CFA346-05F7-4812-8238-5D01A42E9936}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42CFA346-05F7-4812-8238-5D01A42E9936}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{42CFA346-05F7-4812-8238-5D01A42E9936}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42CFA346-05F7-4812-8238-5D01A42E9936}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42CFA346-05F7-4812-8238-5D01A42E9936}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2EE7A6FF-ED03-4E96-B83F-6C8C4A62946B}
+	EndGlobalSection
+EndGlobal
