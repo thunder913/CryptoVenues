@@ -1,6 +1,0 @@
-@CryptoVenues.Server_HostAddress = http://localhost:5227
-
-GET {{CryptoVenues.Server_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
