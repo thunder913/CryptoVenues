@@ -8,20 +8,19 @@ namespace CryptoVenues.Server.Queries;
 [Authorize]
 public class VenueQuery
 {
-    private readonly IVenueService _venueService;
-
-    public VenueQuery(IVenueService venueService)
+    public async Task<IEnumerable<Venue>> GetVenuesByCategoryAsync(
+        string category,
+        int limit,
+        int offset,
+        [Service] IVenueService venueService)
     {
-        _venueService = venueService;
+        return await venueService.GetVenuesByCategoryAsync(category, limit, offset);
     }
 
-    public async Task<IEnumerable<Venue>> GetVenuesByCategoryAsync(string category, int limit, int offset)
+    public async Task<Venue> GetVenue(
+        int id,
+        [Service] IVenueService venueService)
     {
-        return await _venueService.GetVenuesByCategoryAsync(category, limit, offset);
-    }
-
-    public async Task<Venue> GetVenue(int id)
-    {
-        return await _venueService.GetVenueByIdAsync(id);
+        return await venueService.GetVenueByIdAsync(id);
     }
 }
