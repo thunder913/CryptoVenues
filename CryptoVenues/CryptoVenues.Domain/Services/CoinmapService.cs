@@ -42,7 +42,7 @@ public class CoinMapService : ICoinmapService
         }
     }
 
-    public async Task<Venue> GetVenueByIdAsync(string id)
+    public async Task<Venue> GetVenueByIdAsync(int id)
     {
         try
         {

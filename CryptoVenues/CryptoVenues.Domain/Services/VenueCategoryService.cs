@@ -1,4 +1,5 @@
-﻿using CryptoVenues.Domain.Entities;
+﻿using CryptoVenues.Domain.Databases;
+using CryptoVenues.Domain.Entities;
 using CryptoVenues.Domain.Services.Interfaces;
 using Microsoft.Extensions.Caching.Memory;
 using MongoDB.Driver;
@@ -15,11 +16,11 @@ public class VenueCategoryService : IVenueCategoryService
     private static string GetAllAsyncCacheKey = $"{nameof(VenueCategory)}-{nameof(GetAllAsync)}";
 
     public VenueCategoryService(
-        IMongoCollection<VenueCategory> venueCategoryCollection,
+        MongoDbContext dbContext,
         ICoinmapService coinMapService,
         IMemoryCache memoryCache)
     {
-        _venueCategoryCollection = venueCategoryCollection;
+        _venueCategoryCollection = dbContext.VenueCategories;
         _coinmapService = coinMapService;
         _memoryCache = memoryCache;
     }

@@ -34,6 +34,7 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ICoinmapService, CoinMapService>();
 builder.Services.AddScoped<IVenueCategoryService, VenueCategoryService>();
+builder.Services.AddScoped<IVenueService, VenueService>();
 
 builder.Services.AddControllers();
 
@@ -74,6 +75,7 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddHttpClient<CoinMapService>();
 
+builder.Services.AddMemoryCache();
 
 var app = builder.Build();
 

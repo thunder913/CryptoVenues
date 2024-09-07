@@ -1,13 +1,13 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
+using System.Text.Json.Serialization;
 
 namespace CryptoVenues.Domain.Entities;
 public class Venue
 {
     public Venue(
-        string id,
+        int id,
         string name,
         string category,
-        DateTime lastUpdated,
         string geolocationDegrees,
         decimal latitude,
         decimal longitude)
@@ -15,24 +15,30 @@ public class Venue
         Id = id;
         Name = name;
         Category = category;
-        LastUpdatedAt = lastUpdated;
         GeolocationDegrees = geolocationDegrees;
         Latitude = latitude;
         Longitude = longitude;
     }
 
     [BsonId]
-    public string Id { get; set; }
+    [JsonPropertyName("id")]
+    public int Id { get; set; }
 
+    [JsonPropertyName("name")]
     public string Name { get; set; }
 
+    [JsonPropertyName("lat")]
     public decimal Latitude { get; set; }
 
+    [JsonPropertyName("lon")]
     public decimal Longitude { get; set; }
 
+    [JsonPropertyName("category")]
     public string Category { get; set; }
 
+    [JsonPropertyName("geolocation_degrees")]
     public string GeolocationDegrees { get; set; }
 
+    [JsonIgnore]
     public DateTime LastUpdatedAt { get; set; }
 }

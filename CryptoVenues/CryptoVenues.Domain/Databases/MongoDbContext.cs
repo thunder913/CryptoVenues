@@ -1,5 +1,4 @@
 ﻿using CryptoVenues.Domain.Entities;
-using Microsoft.AspNetCore.Mvc.ViewEngines;
 using MongoDB.Driver;
 
 namespace CryptoVenues.Domain.Databases;
@@ -16,5 +15,5 @@ public class MongoDbContext
 
     public IMongoCollection<Venue> Venues => _database.GetCollection<Venue>("Venues");
     public IMongoCollection<User> Users => _database.GetCollection<User>("Users");
-    public IMongoCollection<VenueCategory> Reviews => _database.GetCollection<VenueCategory>("VenueCategories");
+    public IMongoCollection<VenueCategory> VenueCategories => _database.GetCollection<VenueCategory>("VenueCategories");
 }

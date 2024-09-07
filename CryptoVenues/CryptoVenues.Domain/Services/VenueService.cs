@@ -17,15 +17,13 @@ public class VenueService : IVenueService
     public VenueService(
         MongoDbContext dbContext,
         ICoinmapService coinmapService,
-        TimeSpan cacheDuration,
         IMemoryCache memoryCache)
     {
         _venuesCollection = dbContext.Venues;
         _coinmapService = coinmapService;
-        _cacheDuration = cacheDuration;
         _memoryCache = memoryCache;
     }
-    public async Task<Venue> GetVenueByIdAsync(string id)
+    public async Task<Venue> GetVenueByIdAsync(int id)
     {
         var venue = await _venuesCollection
             .Find(x => x.Id == id)
