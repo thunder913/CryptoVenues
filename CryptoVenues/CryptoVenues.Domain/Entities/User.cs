@@ -6,13 +6,11 @@ namespace CryptoVenues.Domain.Entities;
 
 public class User
 {
-    public User(string username, string email, string passwordHash,
-        string fullName, DateTime createdAt)
+    public User(string username, string email, string passwordHash, DateTime createdAt)
     {
         Username = username;
         Email = email;
         PasswordHash = passwordHash;
-        FullName = fullName;
         CreatedAt = createdAt;
     }
 
@@ -29,8 +27,6 @@ public class User
     public string Email { get; set; }
 
     public string PasswordHash { get; set; }
-
-    public string FullName { get; set; }
 
     public DateTime CreatedAt { get; set; }
 }

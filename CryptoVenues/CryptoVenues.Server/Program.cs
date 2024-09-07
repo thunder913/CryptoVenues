@@ -77,6 +77,17 @@ builder.Services.AddHttpClient<CoinMapService>();
 
 builder.Services.AddMemoryCache();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowDevelopment",
+        builder =>
+        {
+            builder.WithOrigins("https://localhost:5173")
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
 
 app.UseDefaultFiles();
@@ -96,5 +107,7 @@ app.MapGraphQL();
 app.MapControllers();
 
 app.MapFallbackToFile("/index.html");
+
+app.UseCors("AllowDevelopment");
 
 app.Run();
