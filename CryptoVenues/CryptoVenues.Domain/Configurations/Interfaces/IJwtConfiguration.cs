@@ -1,4 +1,4 @@
-﻿namespace CryptoVenues.Domain.Configurations;
+﻿namespace CryptoVenues.Domain.Configurations.Interfaces;
 
 public interface IJwtConfiguration
 {

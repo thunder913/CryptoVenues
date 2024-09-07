@@ -1,4 +1,5 @@
 using CryptoVenues.Domain.Configurations;
+using CryptoVenues.Domain.Configurations.Interfaces;
 using CryptoVenues.Domain.Databases;
 using CryptoVenues.Domain.Mutations;
 using CryptoVenues.Domain.Services;
@@ -19,6 +20,10 @@ builder.Services.Configure<JwtConfiguration>(builder.Configuration.GetSection("J
 builder.Services.AddSingleton<IJwtConfiguration>(sp =>
     sp.GetRequiredService<IOptions<JwtConfiguration>>().Value);
 
+builder.Services.Configure<CoinmapConfiguration>(builder.Configuration.GetSection("Coinmap"));
+builder.Services.AddSingleton<ICoinmapConfiguration>(sp =>
+    sp.GetRequiredService<IOptions<CoinmapConfiguration>>().Value);
+
 var mongoConnectionString = builder.Configuration["MongoDb:ConnectionString"];
 var mongoDatabaseName = builder.Configuration["MongoDb:DatabaseName"];
 
@@ -27,6 +32,7 @@ builder.Services.AddSingleton(sp =>
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ICoinMapService, CoinMapService>();
 builder.Services.AddScoped<IVenueCategoryService, VenueCategoryService>();
 
 builder.Services.AddControllers();
@@ -65,6 +71,8 @@ builder.Services.AddAuthentication(options =>
                 Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
         };
     });
+
+builder.Services.AddHttpClient<CoinMapService>();
 
 
 var app = builder.Build();

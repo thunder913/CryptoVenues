@@ -1,4 +1,6 @@
-﻿namespace CryptoVenues.Domain.Configurations;
+﻿using CryptoVenues.Domain.Configurations.Interfaces;
+
+namespace CryptoVenues.Domain.Configurations;
 
 public class JwtConfiguration : IJwtConfiguration
 {

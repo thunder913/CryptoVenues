@@ -1,4 +1,4 @@
-﻿using CryptoVenues.Domain.Configurations;
+﻿using CryptoVenues.Domain.Configurations.Interfaces;
 using CryptoVenues.Domain.Services.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
