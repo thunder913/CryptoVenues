@@ -32,7 +32,7 @@ builder.Services.AddSingleton(sp =>
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<ICoinMapService, CoinMapService>();
+builder.Services.AddScoped<ICoinmapService, CoinMapService>();
 builder.Services.AddScoped<IVenueCategoryService, VenueCategoryService>();
 
 builder.Services.AddControllers();

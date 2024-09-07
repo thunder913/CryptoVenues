@@ -7,20 +7,18 @@ namespace CryptoVenues.Domain.Services;
 
 public class UserService : IUserService
 {
-    private readonly IMongoCollection<User> usersCollection;
+    private readonly IMongoCollection<User> _usersCollection;
 
     public UserService(MongoDbContext dbContext)
     {
-        usersCollection = dbContext.Users;
+        _usersCollection = dbContext.Users;
     }
 
     public async Task CreateAsync(User user)
     {
-        await usersCollection.InsertOneAsync(user);
+        await _usersCollection.InsertOneAsync(user);
     }
 
     public async Task<User> GetByUsernameAsync(string username)
-    {
-        return await usersCollection.Find(x => x.Username == username).FirstOrDefaultAsync();
-    }
+        => await _usersCollection.Find(x => x.Username == username).FirstOrDefaultAsync();
 }

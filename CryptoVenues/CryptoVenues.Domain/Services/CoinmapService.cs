@@ -7,7 +7,7 @@ using System.Text.Json;
 
 namespace CryptoVenues.Domain.Services;
 
-public class CoinMapService : ICoinMapService
+public class CoinMapService : ICoinmapService
 {
     private const string CategoryQueryParam = "category";
     private const string LimitQueryParam = "limit";

@@ -2,7 +2,7 @@
 
 namespace CryptoVenues.Domain.Services.Interfaces;
 
-public interface ICoinMapService
+public interface ICoinmapService
 {
     public Task<Venue> GetVenueByIdAsync(string id);
     public Task<List<Venue>> GetAllVenuesAsync();

@@ -4,6 +4,6 @@ namespace CryptoVenues.Domain.Services.Interfaces;
 
 public interface IVenueService
 {
-    Task<IEnumerable<Venue>> GetVenuesByCategoryAsync(string category, string limit, string offset);
+    Task<IEnumerable<Venue>> GetVenuesByCategoryAsync(string category, int limit, int offset);
     Task<Venue> GetVenueByIdAsync(string id);
 }
