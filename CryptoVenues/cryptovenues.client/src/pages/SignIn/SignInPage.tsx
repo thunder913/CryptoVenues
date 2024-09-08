@@ -3,21 +3,22 @@ import { useNavigate } from "react-router-dom";
 import { SIGN_IN_MUTATION } from "../../mutations/authMutations";
 import { useMutation } from "@apollo/client";
 import AuthHelper from "../../helpers/AuthHelper";
+import './signIngPage.css';
 
 export default function SignInPage() {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
-    const [username, setUsername] = useState<String | undefined>('');
-    const [password, setPassword] = useState<String | undefined>('');
-    const [signIn, { error }] = useMutation(SIGN_IN_MUTATION);
+    const [username, setUsername] = useState<String | undefined>('')
+    const [password, setPassword] = useState<String | undefined>('')
+    const [signIn, { error }] = useMutation(SIGN_IN_MUTATION)
 
     const signInEvent = async () => {
         try {
-            const { data } = await signIn({ variables: { username, password } });
-            AuthHelper.setUserSessionAfterSignIn(data, navigate);
+            const { data } = await signIn({ variables: { username, password } })
+            AuthHelper.setUserSessionAfterSignIn(data, navigate)
         }
         catch (error) {
-            console.error(error);
+            console.error(error)
         }
     }
 
@@ -38,12 +39,12 @@ export default function SignInPage() {
                     onChange={(e) => setPassword(e.target.value)}
                     type="password" />
                 <button onClick={() => signInEvent()}>
-                    Sign in
+                    SIGN IN
                 </button>
             </section>
             <footer className="footer">
                 <p>If you don't have an account create one</p>
-                <button onClick={() => navigate("/signup")}>Register</button>
+                <button onClick={() => navigate("/signup")}>REGISTER</button>
             </footer>
         </div >
     )

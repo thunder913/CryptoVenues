@@ -6,7 +6,7 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-    const token = localStorage.getItem('jwtToken');
+    const token = localStorage.getItem('jwtToken')
     return {
         headers: {
             ...headers,

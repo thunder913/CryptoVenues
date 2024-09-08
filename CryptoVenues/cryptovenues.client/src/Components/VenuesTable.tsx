@@ -22,8 +22,8 @@ interface VenueTableProps {
 }
 
 const VenueTable = ({ selectedCategory }: VenueTableProps) => {
-    const [getCategoryVenues] = useLazyQuery(GET_CATEGORY_VENUES_QUERY);
-    const [venues, setVenues] = useState<Venue[]>([]);
+    const [getCategoryVenues] = useLazyQuery(GET_CATEGORY_VENUES_QUERY)
+    const [venues, setVenues] = useState<Venue[]>([])
     const [isFetching, setIsFetching] = useState<boolean>(false)
 
     const columns = useMemo<ColumnDef<Venue>[]>(() => [
@@ -61,10 +61,10 @@ const VenueTable = ({ selectedCategory }: VenueTableProps) => {
             });
 
             if (data && data.venuesByCategory) {
-                setVenues(data.venuesByCategory);
+                setVenues(data.venuesByCategory)
             }
         } catch (error) {
-            console.error('Error fetching venues:', error);
+            console.error('Error fetching venues:', error)
         }
         setIsFetching(false)
     };
@@ -86,12 +86,12 @@ const VenueTable = ({ selectedCategory }: VenueTableProps) => {
 
     useEffect(() => {
         fetchData(pagination.pageIndex, pagination.pageSize);
-    }, [pagination.pageIndex]);
+    }, [pagination.pageIndex])
 
     useEffect(() => {
         table.setPageIndex(0)
         fetchData(pagination.pageIndex, pagination.pageSize);
-    }, [pagination.pageSize, selectedCategory]);
+    }, [pagination.pageSize, selectedCategory])
 
     return (
         <>

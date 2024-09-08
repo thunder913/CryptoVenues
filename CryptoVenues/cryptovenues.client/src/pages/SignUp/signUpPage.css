@@ -1,0 +1,29 @@
+.sign-up {
+    display: flex;
+    flex-direction: column;
+}
+
+.sign-up-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.sign-up-form input {
+    padding: 10px;
+    width: 100%;
+}
+
+.sign-up-form button {
+    width: 60%;
+    background-color: gray;
+}
+
+.already-have-account p {
+    margin: 0px 4px 20px 4px;
+}
+
+.already-have-account{
+    width: 100%;
+}
