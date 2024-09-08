@@ -6,6 +6,8 @@ import {
     ColumnDef,
     flexRender,
 } from '@tanstack/react-table';
+import { GET_CATEGORY_VENUES_QUERY } from '../queries';
+import { useLazyQuery } from '@apollo/client';
 
 export interface Venue {
     id: string;
@@ -16,13 +18,14 @@ export interface Venue {
 }
 
 interface VenueTableProps {
-    venues: Venue[];
-    fetchData: (pageIndex: number, pageSize: number) => void;
-    isLoading: boolean;
     selectedCategory: string
 }
 
-const VenueTable = ({ venues, fetchData, isLoading, selectedCategory }: VenueTableProps) => {
+const VenueTable = ({ selectedCategory }: VenueTableProps) => {
+    const [getCategoryVenues] = useLazyQuery(GET_CATEGORY_VENUES_QUERY);
+    const [venues, setVenues] = useState<Venue[]>([]);
+    const [isFetching, setIsFetching] = useState<boolean>(false)
+
     const columns = useMemo<ColumnDef<Venue>[]>(() => [
         {
             accessorKey: 'id',
@@ -45,6 +48,26 @@ const VenueTable = ({ venues, fetchData, isLoading, selectedCategory }: VenueTab
             header: 'Latitude',
         },
     ], []);
+
+    const fetchData = async (pageIndex: number, pageSize: number) => {
+        setIsFetching(true)
+        try {
+            const { data } = await getCategoryVenues({
+                variables: {
+                    category: selectedCategory,
+                    limit: pageSize,
+                    offset: pageIndex * pageSize,
+                },
+            });
+
+            if (data && data.venuesByCategory) {
+                setVenues(data.venuesByCategory);
+            }
+        } catch (error) {
+            console.error('Error fetching venues:', error);
+        }
+        setIsFetching(false)
+    };
 
     const [pagination, setPagination] = useState({
         pageIndex: 0,
@@ -72,7 +95,7 @@ const VenueTable = ({ venues, fetchData, isLoading, selectedCategory }: VenueTab
 
     return (
         <>
-            {isLoading ? <div className="loading-text">
+            {isFetching ? <div className="loading-text">
                 <p>Loading venues, please wait...</p>
             </div> : (<>
                 <table>

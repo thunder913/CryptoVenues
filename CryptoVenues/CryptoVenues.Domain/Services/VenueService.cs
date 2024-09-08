@@ -12,7 +12,7 @@ public class VenueService : IVenueService
     private readonly IMemoryCache _memoryCache;
     private readonly IMongoCollection<Venue> _venuesCollection;
     private readonly ICoinmapService _coinmapService;
-    private readonly TimeSpan _cacheDuration = TimeSpan.FromDays(1);
+    private readonly TimeSpan _cacheDuration = TimeSpan.FromHours(1);
 
     public VenueService(
         MongoDbContext dbContext,

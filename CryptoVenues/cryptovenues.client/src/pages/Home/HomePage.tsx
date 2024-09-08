@@ -14,35 +14,12 @@ interface OptionType {
 export default function HomePage() {
     const navigate = useNavigate();
     const [getVenueCategories] = useLazyQuery(GET_VENUE_CATEGORIES_QUERY)
-    const [getCategoryVenues] = useLazyQuery(GET_CATEGORY_VENUES_QUERY);
     const [categories, setCategories] = useState<OptionType[]>();
     const [isLoading, setIsLoading] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState<OptionType | null>(null);
-    const [venues, setVenues] = useState<Venue[]>([]);
-    const [isFetchingCategoryVenues, setIsFetchingCategoryVenues] = useState<boolean>(false)
 
     const logOutEvent = () => {
         AuthHelper.clearUserSession(navigate);
-    };
-
-    const listCategoryVenues = async (pageIndex: number, pageSize: number) => {
-        setIsFetchingCategoryVenues(true)
-        try {
-            const { data } = await getCategoryVenues({
-                variables: {
-                    category: selectedCategory?.value,
-                    limit: pageSize,
-                    offset: pageIndex * pageSize,
-                },
-            });
-
-            if (data && data.venuesByCategory) {
-                setVenues(data.venuesByCategory);
-            }
-        } catch (error) {
-            console.error('Error fetching venues:', error);
-        }
-        setIsFetchingCategoryVenues(false)
     };
 
     const fetchCategories = async () => {
@@ -86,7 +63,7 @@ export default function HomePage() {
         }
 
         const dateNow = new Date();
-        if (parseInt(jwtTokenExpiry) < dateNow.getTime()) {
+        if ((BigInt(jwtTokenExpiry) - 621355968000000000n) / 10000n < dateNow.getTime()) {
             logOutEvent();
             return;
         }
@@ -132,9 +109,6 @@ export default function HomePage() {
                     />
                 </div>
                 {selectedCategory ? <VenueTable
-                    venues={venues}
-                    fetchData={(pageIndex, pageSize) => listCategoryVenues(pageIndex, pageSize)}
-                    isLoading={isFetchingCategoryVenues}
                     selectedCategory={selectedCategory.value}
                 /> : <></>}
             </section>
