@@ -60,6 +60,7 @@ public class VenueService : IVenueService
             return cachedVenues;
 
         var externalVenues = await _coinmapService.GetVenuesByCategoryAsync(category, limit, offset);
+
         var requestTime = DateTime.UtcNow;
 
         foreach (var venue in externalVenues)

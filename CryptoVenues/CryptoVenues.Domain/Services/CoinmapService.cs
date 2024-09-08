@@ -34,11 +34,16 @@ public class CoinMapService : ICoinmapService
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonSerializer.Deserialize<VenueListResponse>(content);
 
-            return result?.Venues ?? null;
+            if(result?.Venues is null)
+            {
+                throw new InvalidDataException("Couldn't fetch data!");
+            }
+
+            return result.Venues;
         }
         catch (HttpRequestException e)
         {
-            return null;
+            throw new Exception(e.Message);
         }
     }
 
@@ -52,11 +57,16 @@ public class CoinMapService : ICoinmapService
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonSerializer.Deserialize<VenueResponse>(content);
 
-            return result?.Venue ?? null;
+            if (result?.Venue is null)
+            {
+                throw new InvalidDataException("Couldn't fetch data!");
+            }
+
+            return result.Venue;
         }
         catch (HttpRequestException e)
         {
-            return null;
+            throw new Exception(e.Message);
         }
     }
 
@@ -83,11 +93,16 @@ public class CoinMapService : ICoinmapService
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonSerializer.Deserialize<VenueListResponse>(content);
 
-            return result?.Venues ?? null;
+            if (result?.Venues is null)
+            {
+                throw new InvalidDataException("Couldn't fetch data!");
+            }
+
+            return result.Venues;
         }
         catch (HttpRequestException e)
         {
-            return null;
+            throw new Exception(e.Message);
         }
     }
 }
